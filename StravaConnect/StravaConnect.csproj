@@ -107,8 +107,12 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\ActivitySummary.cs" />
+    <Compile Include="Activities\Map.cs" />
     <Compile Include="Athletes\Athlete.cs" />
+    <Compile Include="Athletes\AthleteMeta.cs" />
     <Compile Include="Authentication\AccessToken.cs" />
+    <Compile Include="Clients\ActivitiesClient.cs" />
     <Compile Include="Clients\AthletesClient.cs" />
     <Compile Include="Clients\AuthenticationClient.cs" />
     <Compile Include="Clients\HttpJsonClient.cs" />

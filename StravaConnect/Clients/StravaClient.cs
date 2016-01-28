@@ -10,11 +10,13 @@ namespace StravaConnect.Clients
     {
         public string AccessToken { get; private set; } 
         public AthletesClient Athletes { get; private set; }
-              
+        public ActivitiesClient Activities { get; private set; }
+
         public StravaClient(string access_token)
         {
             AccessToken = access_token;
             Athletes = new AthletesClient(AccessToken);
+            Activities = new ActivitiesClient(AccessToken);
         }
 
     }
