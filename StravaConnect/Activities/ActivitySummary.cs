@@ -9,19 +9,61 @@ namespace StravaConnect.Activities
         [JsonProperty("id")]
         public int Id { get; set; }
 
-        public int resource_state { get; set; }
-        public string external_id { get; set; }
+        /// <summary>
+        /// Indicates level of detail
+        /// </summary>
+        [JsonProperty("resource_state")]
+        public int ResourceState { get; set; }
+
+        /// <summary>
+        /// Provided at upload
+        /// </summary>
+        [JsonProperty("external_id")]
+        public string ExternalId { get; set; }
+
         public int upload_id { get; set; }
 
         [JsonProperty("athlete")]
         public AthleteMeta Athlete { get; set; }
 
-        public string name { get; set; }
-        public float distance { get; set; }
-        public int moving_time { get; set; }
-        public int elapsed_time { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// In meters
+        /// </summary>
+        [JsonProperty("distance")]
+        public float Distance { get; set; }
+
+        /// <summary>
+        /// In seconds
+        /// </summary>
+        [JsonProperty("moving_time")]
+        public int MovingTime { get; set; }
+
+        /// <summary>
+        /// In seconds
+        /// </summary>
+        [JsonProperty("elapsed_time")]
+        public int ElapsedTime { get; set; }
+
         public float total_elevation_gain { get; set; }
-        public string type { get; set; }
+
+
+        /// <summary>
+        /// Activity type, ie. ride, run, swim, etc.
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        /// <summary>
+        /// The type of the activity as enum <see cref="ActivityType"/>.
+        /// </summary>
+        public ActivityType TypeAsEnum
+        {
+            get { return (ActivityType)Enum.Parse(typeof(ActivityType), Type); }
+        }
+
         public DateTime start_date { get; set; }
         public DateTime start_date_local { get; set; }
         public string timezone { get; set; }

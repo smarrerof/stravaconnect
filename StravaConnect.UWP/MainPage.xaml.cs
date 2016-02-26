@@ -36,6 +36,7 @@ namespace StravaConnect.UWP
             var stravaClient = new StravaClient(App.Settings.AccessToken);
             var athlete = await stravaClient.Athletes.GetCurrentAthleteAsync();
             var activities = await stravaClient.Activities.GetActivities(per_page: 5);
+            var stream = await stravaClient.Streams.GetActityStreamAsync(activities[0].Id, "latlng");
             this.DataContext = new
             {
                 athlete = athlete,

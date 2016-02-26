@@ -18,9 +18,9 @@
                 </StackPanel>
                 <TextBlock Text="{Binding athlete.City}" Margin="0,4,0,0" />
                 <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                    <TextBlock Text="{Binding activity.name}"  />
-                    <TextBlock Text="{Binding activity.distance}" Margin="4,0,0,0" />
-                    <TextBlock Text="{Binding activity.type}" Margin="4,0,0,0" />
+                    <TextBlock Text="{Binding activity.Name}"  />
+                    <TextBlock Text="{Binding activity.Distance}" Margin="4,0,0,0" />
+                    <TextBlock Text="{Binding activity.Type}" Margin="4,0,0,0" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>

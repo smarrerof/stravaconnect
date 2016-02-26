@@ -58,14 +58,24 @@ namespace StravaConnect.Clients
         /// <returns>Access token</returns>
         public async Task<string> TokenExchangeAsync(string client_id, string client_secret, string authorization_code)
         {
-            var query = string.Format("client_id={0}&client_secret={1}&code={2}",
-                client_id,
-                client_secret,
-                authorization_code);
+            var query = $"client_id={client_id}&client_secret={client_secret}&code={authorization_code}";
 
             var response = await HttpJsonClient.PostAsync<AccessToken>("https://www.strava.com/oauth/token", query);
 
             return response.Token;
+        }
+
+        /// <summary>
+        /// Allows an application to revoke its access to an athlete’s data. 
+        /// This will invalidate all access tokens associated with the ‘athlete,application’ pair used to create the token. 
+        /// The application will be removed from the Athlete Settings page on Strava. 
+        /// </summary>
+        /// <returns>Access token submitted with the request</returns>
+        public async Task<string> DeauthorizationAsync()
+        {
+            var response = await HttpJsonClient.PostAsync<string>("https://www.strava.com/oauth/deauthorize", string.Empty);
+
+            return response;
         }
     }
 }

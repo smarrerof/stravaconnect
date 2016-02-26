@@ -22,7 +22,9 @@ namespace StravaConnect.Clients
 
         public async Task<TResponse> GetAsync<TResponse>(string endpoint, string query)
         {
-            string requestUri = string.Format("{0}{1}", endpoint, string.IsNullOrEmpty(query) ? string.Empty : "?" + query);
+            string requestUri = string.Format("{0}{1}", endpoint, string.IsNullOrEmpty(query) ? 
+                string.Empty : 
+                query.StartsWith("/") ? query : "?" + query);
 
             using (HttpClient httpClient = new HttpClient())
             {
@@ -42,7 +44,6 @@ namespace StravaConnect.Clients
         public async Task<TResponse> PostAsync<TResponse>(string endpoint, string query)
         {
             string requestUri = string.Format("{0}{1}", endpoint, string.IsNullOrEmpty(query) ? string.Empty : "?" + query);
-            // https://www.strava.com/oauth/token?client_id=9413&client_secret=f52343a4dadc0c219bc6229d120bc03fb4fd4a2a&code=cf05a1592129f4dfaed893fa66139d3ba473aea4
 
             using (HttpClient httpClient = new HttpClient())
             {
