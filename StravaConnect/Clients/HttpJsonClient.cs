@@ -35,6 +35,9 @@ namespace StravaConnect.Clients
 
                 var response = await httpClient.GetAsync(requestUri);
 
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    return default(TResponse);                
+
                 response.EnsureSuccessStatusCode();
 
                 return JsonConvert.DeserializeObject<TResponse>(response.Content.ReadAsStringAsync().Result);
