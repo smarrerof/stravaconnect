@@ -21,7 +21,8 @@ namespace StravaConnect.Activities
         [JsonProperty("external_id")]
         public string ExternalId { get; set; }
 
-        public int upload_id { get; set; }
+        [JsonProperty("upload_id")]
+        public int? UploadId { get; set; }
 
         [JsonProperty("athlete")]
         public AthleteMeta Athlete { get; set; }
