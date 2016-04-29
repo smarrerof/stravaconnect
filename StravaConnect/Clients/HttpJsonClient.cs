@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using StravaConnect.Authentication;
+using StravaConnect.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,8 @@ namespace StravaConnect.Clients
 
                 var response = await httpClient.GetAsync(requestUri);
 
+                GetLimits(response);
+
                 if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                     return default(TResponse);                
 
@@ -43,7 +46,7 @@ namespace StravaConnect.Clients
                 return JsonConvert.DeserializeObject<TResponse>(response.Content.ReadAsStringAsync().Result);
             }
         }
-
+        
         public async Task<TResponse> PostAsync<TResponse>(string endpoint, string query)
         {
             string requestUri = string.Format("{0}{1}", endpoint, string.IsNullOrEmpty(query) ? string.Empty : "?" + query);
@@ -57,10 +60,33 @@ namespace StravaConnect.Clients
 
                 var response = await httpClient.PostAsync(requestUri, new StringContent(string.Empty, Encoding.UTF8, "application/json"));
 
+                GetLimits(response);
+
                 response.EnsureSuccessStatusCode();
 
                 return JsonConvert.DeserializeObject<TResponse>(response.Content.ReadAsStringAsync().Result);
             }
+        }
+
+        private void GetLimits(HttpResponseMessage response)
+        {
+            HttpHeaders headers = response.Headers;
+
+            IEnumerable<string> values;
+            if (response.Headers.TryGetValues("X-RateLimit-Limit", out values))
+            {
+                var limits = values.First();
+                Limit.ShortTerm = Int32.Parse(limits.Split(',')[0]);
+                Limit.LongTerm = Int32.Parse(limits.Split(',')[1]);
+            }
+
+            if (response.Headers.TryGetValues("X-RateLimit-Usage", out values))
+            {
+                var usages = values.First();
+                Usage.ShortTerm = Int32.Parse(usages.Split(',')[0]);
+                Usage.LongTerm = Int32.Parse(usages.Split(',')[1]);
+            }
+
         }
     }
 }

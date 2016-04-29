@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="client_id" xml:space="preserve">
-    <value>&lt;your client_id goes here&gt;</value>
+    <value>9413</value>
     <comment>Application’s ID, obtained during registration</comment>
   </data>
   <data name="client_secret" xml:space="preserve">
-    <value>&lt;your client_secret goes here&gt;</value>
+    <value>f52343a4dadc0c219bc6229d120bc03fb4fd4a2a</value>
     <comment>Application’s secret, obtained during registration</comment>
   </data>
 </root>

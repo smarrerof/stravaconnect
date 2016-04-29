@@ -118,14 +118,14 @@
     <Compile Include="Clients\AthletesClient.cs" />
     <Compile Include="Clients\AuthenticationClient.cs" />
     <Compile Include="Clients\HttpJsonClient.cs" />
+    <Compile Include="Common\Usage.cs" />
+    <Compile Include="Common\Limit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clients\StravaClient.cs" />
     <Compile Include="Streams\Stream.cs" />
     <EmbeddedResource Include="Properties\StravaConnect.rd.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
